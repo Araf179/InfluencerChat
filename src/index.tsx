@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import UserList from "./pages/UserList";
+import Pay from "./pages/Pay";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserList />
+    <Pay />
   </React.StrictMode>,
   document.getElementById("root")
 );
