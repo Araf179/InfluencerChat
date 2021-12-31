@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import UserList from "./pages/UserList";
 import Pay from "./pages/Pay";
+import Chat from "./pages/Chat";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Pay />
+    <Chat />
   </React.StrictMode>,
   document.getElementById("root")
 );
