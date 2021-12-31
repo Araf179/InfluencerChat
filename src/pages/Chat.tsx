@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import AttachmentIcon from '@mui/icons-material/Attachment';
+import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from '@mui/material/IconButton';
 import Header from "../components/Header";
 
@@ -8,6 +10,7 @@ import "../styles/App.css";
 const UserList: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [textAreaMessage, setTextAreaMessage] = useState('')
+    const [showAttachedFile, setShowAttachedFile] = useState(false)
     const filePickerRef = useRef(null);
 
     const addImageToPost = (e: any) => {
@@ -16,11 +19,11 @@ const UserList: React.FC = () => {
           reader.readAsDataURL(e.target.files[0]);
         }
     
-         reader.onload = (readerEvent) => {
+        reader.onload = (readerEvent) => {
             console.log(readerEvent)
             setSelectedFile(readerEvent.target.result);
-            setTextAreaMessage((prevState) => {return prevState + AttachFileIcon})
-         };
+            setShowAttachedFile(true)
+        };
       };
 
   return (
@@ -65,6 +68,14 @@ const UserList: React.FC = () => {
             </div>
           </div>
         </div>
+        {showAttachedFile && (
+            <div className="relative right-[139px]">
+            <AttachmentIcon fontSize="large"/>
+            <IconButton>
+                <CancelIcon fontSize="small" onClick={() => {setShowAttachedFile(false)}} />
+            </IconButton>
+            </div>
+        )}
         <div className="flex mt-[22px]">
             <textarea
               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
