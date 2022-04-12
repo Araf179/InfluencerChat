@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useActions';
 import "../styles/App.css";
 
 const Login: React.FC = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const { login } = useActions();
+    const {error, loading} = useTypedSelector((state) => state.login);
+    
+    const onLogin = (event) => {
+        event.preventDefault();
+        login(username, password);
+    }
+
   return (
     <div className="container mx-auto h-full flex justify-center items-center">
       <div className="relative top-[10vh] w-1/3">
@@ -17,6 +28,7 @@ const Login: React.FC = () => {
               type="text"
               className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
               placeholder="Your Username"
+              onChange={(e) => { setUsername(e.target.value) }}
             />
           </div>
 
@@ -28,11 +40,12 @@ const Login: React.FC = () => {
               type="text"
               className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
               placeholder="Your Password"
+              onChange={(e) => { setPassword(e.target.value) }}
             />
           </div>
 
           <div className="flex items-center justify-between">
-            <button className="bg-teal-dark hover:bg-teal text-white font-bold py-2 px-4 rounded">
+            <button onClick={(e) => {onLogin(e)}} className="bg-teal-dark hover:bg-teal text-black font-bold py-2 px-4 rounded">
               Login
             </button>
 

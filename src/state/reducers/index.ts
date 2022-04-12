@@ -3,7 +3,7 @@ import LoginReducer from './loginReducer';
 
 
 const reducers = combineReducers({
-    repositories: LoginReducer
+    login: LoginReducer
 })
 
 export default reducers;
